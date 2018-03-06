@@ -11,7 +11,7 @@ class App {
     .then(json => this.selectCards(json));
   }
 
-  selectCards(cards, num=2) {
+  selectCards(cards, num=10) {
     const allCards = cards.slice();
     allCards.sort((a, b) => {
       return 0.5 - Math.random();
@@ -29,16 +29,21 @@ class App {
   addCardsListeners() {
     this.cardsPanel.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG') {
+        this.renderCardFront(e.target);
         if (this.firstFlip) {
           this.secondFlip = e.target.dataset;
           this.compareFlips(this.firstFlip, this.secondFlip);
           this.firstFlip = 0;
         } else {
           this.firstFlip = e.target.dataset;
-          //disable clicked card?
         }
       }
     });
+  }
+
+  renderCardFront(elem) {
+    let front_url = elem.dataset.imgurl;
+    elem.setAttribute('src', front_url);
   }
 
   compareFlips(a, b) {
@@ -46,6 +51,7 @@ class App {
       console.log('yay!');
     } else {
       console.log('try again');
+      console.log(a);
     }
   }
 

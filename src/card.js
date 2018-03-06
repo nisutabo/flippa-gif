@@ -9,16 +9,17 @@ const Card= (() => {
       this.displayId = displayId++;
 
       this.cardsPanel = document.getElementById('cards-panel');
-      this.renderCard();
+      this.renderCardBack();
       this.flips = [];
     }
 
-    renderCard() {
+    renderCardBack() {
       let cardImg = document.createElement('img');
       cardImg.setAttribute('class', 'ui column');
       cardImg.setAttribute('data-id', this.id);
-      cardImg.setAttribute('data-display-id', this.displayId);
-      cardImg.setAttribute('src', this.img_url);
+      cardImg.setAttribute('data-displayid', this.displayId);
+      cardImg.setAttribute('data-imgurl', this.img_url);
+      cardImg.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
       this.cardsPanel.appendChild(cardImg);
     }
   };
