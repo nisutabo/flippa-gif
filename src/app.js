@@ -51,7 +51,6 @@ class App {
       console.log('yay!');
     } else {
       console.log('try again');
-      console.log(a);
     }
   }
 
