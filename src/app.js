@@ -2,9 +2,11 @@ class App {
   constructor() {
     this.cardsPanel = document.getElementById('cards-panel');
     this.addCardsListeners();
+    this.homePage()
     this.fetchCards();
     this.cardsInPlay = [];
   }
+
 
   fetchCards() {
     fetch('http://localhost:3000/api/cards')
@@ -12,7 +14,7 @@ class App {
     .then(json => this.selectCards(json));
   }
 
-  selectCards(cards, num=10) {
+  selectCards(cards, num=8) {
     const allCards = cards.slice();
     allCards.sort((a, b) => {
       return 0.5 - Math.random();
