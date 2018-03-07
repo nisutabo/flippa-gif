@@ -1,0 +1,27 @@
+.intro {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  background-color: grey;
+  display: table;
+  top: 0
+}
+
+.intro .inner {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  max-width: auto;
+}
+
+.content {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content h1 {
+  font-family: fantasy;
+  text-shadow: 0px 0px 300px #000
+  /* !!!!!!!!!!CHANGE!!!!!!!!!! */
+}

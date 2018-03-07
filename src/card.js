@@ -8,7 +8,7 @@ const Card= (() => {
       this.img_url = img_url;
       this.displayId = displayId++;
 
-      this.cardsPanel = document.getElementById('cards-panel');
+      this.gameContainer = document.getElementsByClassName('game-container')[0];
       this.renderCard();
     }
 
@@ -20,22 +20,26 @@ const Card= (() => {
       cardContainer.appendChild(cardContent);
       cardContent.appendChild(this.cardFront());
       cardContent.appendChild(this.cardBack());
-      this.cardsPanel.appendChild(cardContainer);
+      this.gameContainer.appendChild(cardContainer);
     }
 
     cardFront() {
+
+
+
       let frontImg = document.createElement('img');
-      frontImg.setAttribute('class', 'ui column front');
+      frontImg.setAttribute('class', 'front');
       frontImg.setAttribute('data-id', this.id);
       frontImg.setAttribute('data-displayid', this.displayId);
-      frontImg.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
+      frontImg.setAttribute('src', 'https://pbs.twimg.com/profile_images/544985527997304833/0DNfZq49_400x400.png');
       return frontImg;
     }
 
     cardBack() {
       let backImg = document.createElement('img');
-      backImg.setAttribute('class', 'ui column back');
+      backImg.setAttribute('class', 'back');
       backImg.setAttribute('data-id', this.id);
+      backImg.setAttribute('alt', this.name);
       backImg.setAttribute('data-displayid', this.displayId);
       backImg.setAttribute('src', this.img_url);
       return backImg;
