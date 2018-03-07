@@ -11,7 +11,7 @@ class App {
     .then(json => this.selectCards(json));
   }
 
-  selectCards(cards, num=10) {
+  selectCards(cards, num=8) {
     const allCards = cards.slice();
     allCards.sort((a, b) => {
       return 0.5 - Math.random();
