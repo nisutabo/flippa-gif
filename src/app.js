@@ -18,19 +18,31 @@ class App {
       return 0.5 - Math.random();
     });
     const randomCards = allCards.slice(0, num);
-    this.addCards(randomCards);
+    this.doubleCards(randomCards);
+  }
+
+  doubleCards(cards) {
+    let set = [];
+    cards.forEach((c) => {
+      set.push(c);
+      set.push(c);
+    })
+    this.addCards(set);
   }
 
   addCards(cards) {
-    for (let i = 0; i < 2; i ++) {
-      cards.forEach((card) => new Card(card));
+    while (cards.length > 0) {
+      const randInd = Math.floor(Math.random() * cards.length);
+      const card = cards.splice(randInd, 1)[0];
+      new Card(card);
     }
   }
 
   addCardsListeners() {
     this.cardsPanel.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG') {
-        this.renderCardFront(e.target);
+        e.target.parentNode.classList.toggle("flipped");
+        // this.renderCardFront(e.target);
         if (this.cardsInPlay.length) {
           this.cardsInPlay.push(e.target);
           this.compareFlips(this.cardsInPlay);
@@ -42,31 +54,31 @@ class App {
     });
   }
 
-  renderCardFront(elem) {
-    let front_url = elem.dataset.imgurl;
-    elem.setAttribute('src', front_url);
-  }
-
   compareFlips(cards) {
     const a = cards[0].dataset;
     const b = cards[1].dataset;
     if (a.id === b.id && a.displayid !== b.displayid) {
       this.fadeCards(cards);
     } else {
-      console.log(a, b);
-      console.log(a.id === b.id);
-      console.log(a.displayId !== b.displayId);
-      this.renderCardBacks(cards);
+      cards.forEach((c) => {
+        c.parentNode.classList.toggle("flipped");
+      });
+      // this.renderCardBacks(cards);
     }
   }
 
-  renderCardBacks(elems) {
-    setTimeout(() => {
-      elems.forEach((c) => {
-        c.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
-      });
-    }, 1500);
-  }
+  // renderCardFront(elem) {
+  //   let front_url = elem.dataset.imgurl;
+  //   elem.setAttribute('src', front_url);
+  // }
+
+  // renderCardBacks(elems) {
+  //   setTimeout(() => {
+  //     elems.forEach((c) => {
+  //       c.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
+  //     });
+  //   }, 1500);
+  // }
 
   fadeCards(cards) {
     setTimeout(() => {
@@ -75,7 +87,5 @@ class App {
       });
     }, 1500);
   }
-
-
 
 }
