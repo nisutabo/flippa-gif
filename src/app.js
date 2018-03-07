@@ -3,6 +3,7 @@ class App {
     this.cardsPanel = document.getElementById('cards-panel');
     this.addCardsListeners();
     this.fetchCards();
+    this.cardsInPlay = [];
   }
 
   fetchCards() {
@@ -30,12 +31,12 @@ class App {
     this.cardsPanel.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG') {
         this.renderCardFront(e.target);
-        if (this.firstFlip) {
-          this.secondFlip = e.target.dataset;
-          this.compareFlips(this.firstFlip, this.secondFlip);
-          this.firstFlip = 0;
+        if (this.cardsInPlay.length) {
+          this.cardsInPlay.push(e.target);
+          this.compareFlips(this.cardsInPlay);
+          this.cardsInPlay = [];
         } else {
-          this.firstFlip = e.target.dataset;
+          this.cardsInPlay.push(e.target);
         }
       }
     });
@@ -46,13 +47,33 @@ class App {
     elem.setAttribute('src', front_url);
   }
 
-  compareFlips(a, b) {
-    if (a.id === b.id && a.displayId !== b.displayId) {
-      console.log('yay!');
+  compareFlips(cards) {
+    const a = cards[0].dataset;
+    const b = cards[1].dataset;
+    if (a.id === b.id && a.displayid !== b.displayid) {
+      this.fadeCards(cards);
     } else {
-      console.log('try again');
-      console.log(a);
+      console.log(a, b);
+      console.log(a.id === b.id);
+      console.log(a.displayId !== b.displayId);
+      this.renderCardBacks(cards);
     }
+  }
+
+  renderCardBacks(elems) {
+    setTimeout(() => {
+      elems.forEach((c) => {
+        c.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
+      });
+    }, 1500);
+  }
+
+  fadeCards(cards) {
+    setTimeout(() => {
+      cards.forEach((c) => {
+        c.setAttribute('class', 'disabled');
+      });
+    }, 1500);
   }
 
 

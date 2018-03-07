@@ -1,11 +1,16 @@
 #cards-panel {
-  width: 80%;
+  max-width: 80rem;
   margin: auto;
+  overflow: hidden;
 }
 
 .card {
   width: 20%;
   height: 20%;
+}
+
+.disabled {
+  opacity: 0.5;
 }
 
 img {
