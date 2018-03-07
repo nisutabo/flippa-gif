@@ -26,7 +26,7 @@ class App {
     cards.forEach((c) => {
       set.push(c);
       set.push(c);
-    })
+    });
     this.addCards(set);
   }
 
@@ -41,12 +41,10 @@ class App {
   addCardsListeners() {
     this.cardsPanel.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG') {
-        e.target.parentNode.classList.toggle("flipped");
-        // this.renderCardFront(e.target);
+        e.target.parentNode.classList.add("flipped");
         if (this.cardsInPlay.length) {
           this.cardsInPlay.push(e.target);
-          this.compareFlips(this.cardsInPlay);
-          this.cardsInPlay = [];
+          this.compareFlips();
         } else {
           this.cardsInPlay.push(e.target);
         }
@@ -54,38 +52,32 @@ class App {
     });
   }
 
-  compareFlips(cards) {
-    const a = cards[0].dataset;
-    const b = cards[1].dataset;
+  compareFlips() {
+    const a = this.cardsInPlay[0].dataset;
+    const b = this.cardsInPlay[1].dataset;
     if (a.id === b.id && a.displayid !== b.displayid) {
-      this.fadeCards(cards);
+      setTimeout(() => {
+        this.fadeCards();
+      }, 1500)
     } else {
-      cards.forEach((c) => {
-        c.parentNode.classList.toggle("flipped");
-      });
-      // this.renderCardBacks(cards);
+      setTimeout(() => {
+        this.flipBack();
+      }, 1500);
     }
   }
 
-  // renderCardFront(elem) {
-  //   let front_url = elem.dataset.imgurl;
-  //   elem.setAttribute('src', front_url);
-  // }
-
-  // renderCardBacks(elems) {
-  //   setTimeout(() => {
-  //     elems.forEach((c) => {
-  //       c.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
-  //     });
-  //   }, 1500);
-  // }
-
-  fadeCards(cards) {
-    setTimeout(() => {
-      cards.forEach((c) => {
+  fadeCards() {
+      this.cardsInPlay.forEach((c) => {
         c.setAttribute('class', 'disabled');
       });
-    }, 1500);
+    this.cardsInPlay = [];
+  }
+
+  flipBack() {
+    this.cardsInPlay.forEach((c) => {
+      c.parentNode.classList.remove("flipped");
+    });
+    this.cardsInPlay = [];
   }
 
 }

@@ -12,38 +12,33 @@ const Card= (() => {
       this.renderCard();
     }
 
-    // renderCardBack() {
-    //   let cardImg = document.createElement('img');
-    //   cardImg.setAttribute('class', 'ui column');
-    //   cardImg.setAttribute('data-id', this.id);
-    //   cardImg.setAttribute('data-displayid', this.displayId);
-    //   cardImg.setAttribute('data-imgurl', this.img_url);
-    //   cardImg.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
-    //   this.cardsPanel.appendChild(cardImg);
-    // }
-
     renderCard() {
       let cardContainer = document.createElement('div');
       cardContainer.setAttribute('class', 'card-container');
-
       let cardContent = document.createElement('div');
       cardContent.setAttribute('id', 'card');
       cardContainer.appendChild(cardContent);
+      cardContent.appendChild(this.cardFront());
+      cardContent.appendChild(this.cardBack());
+      this.cardsPanel.appendChild(cardContainer);
+    }
 
+    cardFront() {
+      let frontImg = document.createElement('img');
+      frontImg.setAttribute('class', 'ui column front');
+      frontImg.setAttribute('data-id', this.id);
+      frontImg.setAttribute('data-displayid', this.displayId);
+      frontImg.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
+      return frontImg;
+    }
+
+    cardBack() {
       let backImg = document.createElement('img');
       backImg.setAttribute('class', 'ui column back');
       backImg.setAttribute('data-id', this.id);
       backImg.setAttribute('data-displayid', this.displayId);
       backImg.setAttribute('src', this.img_url);
-
-      let frontImg = document.createElement('img');
-      frontImg.setAttribute('class', 'ui column front');
-      frontImg.setAttribute('src', 'http://moziru.com/images/leaf-clipart-cartoon-16.jpg');
-
-      cardContent.appendChild(backImg);
-      cardContent.appendChild(frontImg);
-
-      this.cardsPanel.appendChild(cardContainer);
+      return backImg;
     }
   };
 })();
