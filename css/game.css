@@ -16,8 +16,20 @@
   perspective: 1000px;
 }
 
+.easy {
+  column-count: 4;
+}
+
 .medium {
   column-count: 5;
+}
+
+.hard {
+  column-count: 7;
+}
+
+.superhard {
+  column-count: 9;
 }
 
 .card-container {

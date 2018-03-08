@@ -1,5 +1,7 @@
 class Game {
-  constructor() {
+  constructor(categoryId, difficulty) {
+    this.categoryId = categoryId;
+    this.cardsNum = difficulty;
     this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
     this.addCardsListeners();
     this.fetchCards();
@@ -7,17 +9,17 @@ class Game {
   }
 
   fetchCards() {
-    fetch('http://localhost:3000/api/cards')
+    fetch(`http://localhost:3000/api/categories/${this.categoryId}`)
     .then(res => res.json())
-    .then(json => this.selectCards(json));
+    .then(json => this.selectCards(json.cards));
   }
 
-  selectCards(cards, num=10) {
+  selectCards(cards) {
     const allCards = cards.slice();
     allCards.sort((a, b) => {
       return 0.5 - Math.random();
     });
-    const randomCards = allCards.slice(0, num);
+    const randomCards = allCards.slice(0, this.cardsNum);
     this.doubleCards(randomCards);
   }
 
