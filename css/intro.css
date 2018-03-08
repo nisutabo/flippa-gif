@@ -1,13 +1,14 @@
 .intro-outer {
+  background-color: #4c4c4c;
   height: 100%;
   width: 100%;
   margin: auto;
-  background-color: grey;
   display: table;
   top: 0
 }
 
-.intro-outer .intro-inner {
+
+.intro-inner {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
@@ -22,6 +23,13 @@
 
 .intro-content h1 {
   font-family: fantasy;
+  color: #eceeef;
   text-shadow: 0px 0px 300px #000
   /* !!!!!!!!!!CHANGE!!!!!!!!!! */
+}
+
+.intro-content img {
+  border: 2px solid #eceeef;
+  border-radius: 2rem;
+  margin: 10%;
 }

@@ -1,5 +1,6 @@
 class App {
   constructor() {
+    this.body = document.getElementsByTagName('body')[0];
     this.intro();
   }
 
@@ -16,7 +17,6 @@ class App {
       this.difficulty = e.target[1].value;
       if (this.categoryId && this.difficulty!== "-- Select Difficulty --") {
         this.launchGame();
-        this.startTimer();
       }
     });
   }
@@ -36,25 +36,29 @@ class App {
 
   launchGame() {
     this.setGameLayout();
+    this.addGameListeners();
     new Game(this.categoryId, this.setDifficulty());
+    this.startTimer();
   }
 
   setGameLayout() {
-    let body = document.getElementsByTagName('body')[0];
-    body.innerHTML = `
+    this.body.innerHTML = `
     <div class="menu-container">
       <div class="item">FLIPPA GIF</div>
       <div id="timer" class="item">0 hr, 0 min, 0 sec</div>
       <div class="item">Score: </div>
+      <div id="show" class="w3-container w3-center w3-animate-top"></div>
+      <div id="score-value" class="points">0</div>
+
       <div class="item">Category: ${this.setCategory()}</div>
-      <div class="item"><i class="big arrow left link icon"></i></div>
+      <div class="item"><i class="big repeat link icon restart"></i></div>
+      <div class="item"><i class="big arrow left link icon back"></i></div>
     </div>
     <div class="game-container-outer">
       <div class="game-container-inner">
       </div>
     </div>`;
   }
-
 
   setDifficulty() {
     let gameContainer = document.getElementsByClassName('game-container-inner')[0];
@@ -95,5 +99,14 @@ class App {
     timer.innerHTML = `${hour} hr, ${min} min, ${sec} sec`;
   }
 
-
+  addGameListeners() {
+    this.body.addEventListener('click', (e) => {
+      if (e.target.classList.contains('back')) {
+        this.intro();
+      }
+      if (e.target.classList.contains('restart')) {
+        this.launchGame();
+      }
+    });
+  }
 }

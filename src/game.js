@@ -56,21 +56,61 @@ class Game {
   }
 
   compareFlips() {
-        this.checkWin();
-
+    this.checkWin();
     const a = this.cardsInPlay[0].dataset;
     const b = this.cardsInPlay[1].dataset;
+    // SCORE KEEPING SECTION
+    let score = document.getElementById("score-value");
+    let show = document.getElementById("show");
+    let scoreValue = parseInt(score.innerHTML);
+
+
     if (a.id === b.id && a.displayid !== b.displayid) {
+
       setTimeout(() => {
         this.fadeCards();
       }, 1200);
       this.matchedCount += 1;
+
+
+      show.innerHTML = "+20"
+      show.classList.remove('loss')
+      show.classList.add('gain')
+      this.fade(show)
+      scoreValue += 20
+      score.classList.remove('loss')
+      score.classList.add('gain')
+      score.innerHTML = scoreValue
+
+
       this.checkWin();
     } else {
       setTimeout(() => {
         this.flipBack();
       }, 1200);
+
+
+      scoreValue -= 1
+      show.innerHTML = "-1"
+      show.classList.remove('gain')
+      show.classList.add('loss')
+      this.fade(show)
+      score.classList.remove('gain')
+      score.classList.add('loss')
+      score.innerHTML = scoreValue
     }
+  }
+
+  fade(element) {
+   var op = 1;  // initial opacity
+   var timer = setInterval(function () {
+       if (op <= 0.1){
+           clearInterval(timer);
+       }
+       element.style.opacity = op;
+       element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+       op -= op * 0.1;
+   }, 50);
   }
 
   fadeCards() {
@@ -89,16 +129,20 @@ class Game {
 
   checkWin() {
     if (this.matchedCount === this.cardsNum) {
-    let outerContainer = this.gameContainer = document.getElementsByClassName('game-container-outer')[0];
-      outerContainer.innerHTML = `
-      <div class="win-container">
-        <div class="win-content">
-          <h1>WELL DONE!</h1>
-          <img src="https://m.popkey.co/864d57/y0XbQ.gif" alt="YAY YOU WON!" />
-          <h1>YA FLIPPED 'EM ALL!!!</h1>
-        </div>
-      </div>`;
-    };
+      let outerContainer = this.gameContainer = document.getElementsByClassName('game-container-outer')[0];
+      setTimeout(() => {
+          outerContainer.innerHTML = `
+          <div class="win-container">
+            <div class="win-content">
+              <h1>WELL DONE!</h1>
+                <a href="#" class="back">
+                	<img src="https://i.imgur.com/fMZwSSn.gif" alt="You Won!"/>
+                <a/>
+              <h1>YA FLIPPED 'EM ALL!!!</h1>
+            </div>
+          </div>`;
+      }, 1500);
+    }
   }
 
 }
