@@ -1,10 +1,11 @@
 class Game {
-  constructor(categoryId, difficulty) {
+  constructor(categoryId, cardsNum) {
     this.categoryId = categoryId;
-    this.cardsNum = difficulty;
+    this.cardsNum = cardsNum;
     this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
-    this.addCardsListeners();
     this.fetchCards();
+    this.addCardsListeners();
+    this.matchedCount = 0;
     this.cardsInPlay = [];
   }
 
@@ -55,12 +56,16 @@ class Game {
   }
 
   compareFlips() {
+        this.checkWin();
+
     const a = this.cardsInPlay[0].dataset;
     const b = this.cardsInPlay[1].dataset;
     if (a.id === b.id && a.displayid !== b.displayid) {
       setTimeout(() => {
         this.fadeCards();
       }, 1200);
+      this.matchedCount += 1;
+      this.checkWin();
     } else {
       setTimeout(() => {
         this.flipBack();
@@ -80,6 +85,20 @@ class Game {
       c.parentNode.classList.remove("flipped");
     });
     this.cardsInPlay = [];
+  }
+
+  checkWin() {
+    if (this.matchedCount === this.cardsNum) {
+    let outerContainer = this.gameContainer = document.getElementsByClassName('game-container-outer')[0];
+      outerContainer.innerHTML = `
+      <div class="win-container">
+        <div class="win-content">
+          <h1>WELL DONE!</h1>
+          <img src="https://m.popkey.co/864d57/y0XbQ.gif" alt="YAY YOU WON!" />
+          <h1>YA FLIPPED 'EM ALL!!!</h1>
+        </div>
+      </div>`;
+    };
   }
 
 }
