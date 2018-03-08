@@ -26,6 +26,15 @@ class App {
 
   setGameLayout() {
     this.body.innerHTML = `
+    <div class="menu-container">
+      <div class="item">FLIPPA GIF</div>
+      <div class="item">Timer</div>
+      <div class="item">Score</div>
+      <div class="item">Level: </div>
+      <div class="item">Category: </div>
+      <div class="item"><i class="big arrow left link icon"></i></div>
+    </div>
+
     <div class="game-container-outer">
       <div class="game-container-inner medium">
       </div>

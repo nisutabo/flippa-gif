@@ -29,8 +29,6 @@ const Card= (() => {
 
       let frontImg = document.createElement('img');
       frontImg.setAttribute('class', 'front');
-      frontImg.setAttribute('data-id', this.id);
-      frontImg.setAttribute('data-displayid', this.displayId);
       frontImg.setAttribute('src', 'https://pbs.twimg.com/profile_images/544985527997304833/0DNfZq49_400x400.png');
       return frontImg;
     }

@@ -1,1 +1,16 @@
+body {
+  text-align: center;
+}
 
+.menu-container {
+  float: left;
+  min-width: 8rem;
+  max-width: 15rem;
+  margin-left: 2rem;
+  height: 100%;
+  text-align: center;
+}
+
+.menu-container .item {
+  margin: 65% 0;
+}

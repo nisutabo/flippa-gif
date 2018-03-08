@@ -43,10 +43,10 @@ class Game {
       if (e.target.tagName === 'IMG') {
         e.target.parentNode.classList.add("flipped");
         if (this.cardsInPlay.length) {
-          this.cardsInPlay.push(e.target);
+          this.cardsInPlay.push(e.target.nextElementSibling);
           this.compareFlips();
         } else {
-          this.cardsInPlay.push(e.target);
+          this.cardsInPlay.push(e.target.nextElementSibling);
         }
       }
     });
@@ -58,17 +58,17 @@ class Game {
     if (a.id === b.id && a.displayid !== b.displayid) {
       setTimeout(() => {
         this.fadeCards();
-      }, 1500);
+      }, 1200);
     } else {
       setTimeout(() => {
         this.flipBack();
-      }, 1500);
+      }, 1200);
     }
   }
 
   fadeCards() {
       this.cardsInPlay.forEach((c) => {
-        c.setAttribute('class', 'disabled');
+        c.classList.add("disabled");
       });
     this.cardsInPlay = [];
   }
