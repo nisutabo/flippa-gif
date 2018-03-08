@@ -1,4 +1,13 @@
-.game-container {
+.game-container-outer {
+  max-width: 70rem;
+  height: 0;
+  margin: auto;
+  margin-top: 3%;
+  padding-top: 70%;
+  position: relative;
+}
+
+.game-container-inner {
   position: absolute;
   top: 0;
   left: 0;

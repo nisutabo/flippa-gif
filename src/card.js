@@ -8,7 +8,7 @@ const Card= (() => {
       this.img_url = img_url;
       this.displayId = displayId++;
 
-      this.gameContainer = document.getElementsByClassName('game-container')[0];
+      this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
       this.renderCard();
     }
 

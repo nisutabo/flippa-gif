@@ -1,6 +1,6 @@
 class Game {
   constructor() {
-    this.gameContainer = document.getElementsByClassName('game-container')[0];
+    this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
     this.addCardsListeners();
     this.fetchCards();
     this.cardsInPlay = [];
