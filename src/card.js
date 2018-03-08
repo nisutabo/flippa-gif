@@ -7,7 +7,6 @@ const Card= (() => {
       this.name = name;
       this.img_url = img_url;
       this.displayId = displayId++;
-
       this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
       this.renderCard();
     }
@@ -24,9 +23,6 @@ const Card= (() => {
     }
 
     cardFront() {
-
-
-
       let frontImg = document.createElement('img');
       frontImg.setAttribute('class', 'front');
       frontImg.setAttribute('src', 'https://pbs.twimg.com/profile_images/544985527997304833/0DNfZq49_400x400.png');

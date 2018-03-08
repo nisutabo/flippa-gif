@@ -15,14 +15,28 @@ class App {
       this.categoryId = parseInt(e.target[0].value);
       this.difficulty = e.target[1].value;
       if (this.categoryId && this.difficulty!== "-- Select Difficulty --") {
-        this.startGame();
+        this.launchGame();
+        this.startTimer();
       }
     });
   }
 
-  startGame() {
+  setCategory() {
+    switch (this.categoryId) {
+    case 1:
+      return 'Animals';
+    case 2:
+      return 'Celebrities';
+    case 3:
+      return 'TV Shows';
+    case 4:
+      return 'Nicolas Cage';
+    }
+  }
+
+  launchGame() {
     this.setGameLayout();
-    let game = new Game(this.categoryId, this.setDifficulty());
+    new Game(this.categoryId, this.setDifficulty());
   }
 
   setGameLayout() {
@@ -30,18 +44,17 @@ class App {
     body.innerHTML = `
     <div class="menu-container">
       <div class="item">FLIPPA GIF</div>
-      <div class="item">Timer</div>
-      <div class="item">Score</div>
-      <div class="item">Level: </div>
-      <div class="item">Category: </div>
+      <div id="timer" class="item">0 hr, 0 min, 0 sec</div>
+      <div class="item">Score: </div>
+      <div class="item">Category: ${this.setCategory()}</div>
       <div class="item"><i class="big arrow left link icon"></i></div>
     </div>
-
     <div class="game-container-outer">
       <div class="game-container-inner">
       </div>
     </div>`;
   }
+
 
   setDifficulty() {
     let gameContainer = document.getElementsByClassName('game-container-inner')[0];
@@ -58,7 +71,29 @@ class App {
     }
   }
 
+  startTimer() {
+    window.setInterval(this.runTimer, 1000);
+  }
 
+  runTimer() {
+    let timer = document.getElementById('timer');
+    let arr = timer.innerHTML.split(', ');
+    let hour = parseInt(arr[0].split(' ')[0]);
+    let min = parseInt(arr[1].split(' ')[0]);
+    let sec = parseInt(arr[2].split(' ')[0]);
+    if (sec === 59) {
+      if (min === 59) {
+        hour++;
+        min = 0;
+      } else {
+        min++;
+      }
+      sec = 0;
+    } else {
+      sec++;
+    }
+    timer.innerHTML = `${hour} hr, ${min} min, ${sec} sec`;
+  }
 
 
 }
