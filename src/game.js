@@ -3,8 +3,11 @@ class Game {
     this.categoryId = categoryId;
     this.cardsNum = cardsNum;
     this.gameContainer = document.getElementsByClassName('game-container-inner')[0];
+    this.scoreElem = document.getElementById('score-value');
+    this.scoreChange = document.getElementById('score-change');
     this.fetchCards();
     this.addCardsListeners();
+    this.score = 0;
     this.matchedCount = 0;
     this.cardsInPlay = [];
   }
@@ -59,57 +62,48 @@ class Game {
     this.checkWin();
     const a = this.cardsInPlay[0].dataset;
     const b = this.cardsInPlay[1].dataset;
-    // SCORE KEEPING SECTION
-    let score = document.getElementById("score-value");
-    let show = document.getElementById("show");
-    let scoreValue = parseInt(score.innerHTML);
-
-
     if (a.id === b.id && a.displayid !== b.displayid) {
-
       setTimeout(() => {
         this.fadeCards();
       }, 1200);
       this.matchedCount += 1;
-
-
-      show.innerHTML = "+20"
-      show.classList.remove('loss')
-      show.classList.add('gain')
-      this.fade(show)
-      scoreValue += 20
-      score.classList.remove('loss')
-      score.classList.add('gain')
-      score.innerHTML = scoreValue
-
-
+      this.gainPoints();
       this.checkWin();
     } else {
       setTimeout(() => {
         this.flipBack();
       }, 1200);
-
-
-      scoreValue -= 1
-      show.innerHTML = "-1"
-      show.classList.remove('gain')
-      show.classList.add('loss')
-      this.fade(show)
-      score.classList.remove('gain')
-      score.classList.add('loss')
-      score.innerHTML = scoreValue
+      this.losePoint();
     }
   }
 
-  fade(element) {
-   var op = 1;  // initial opacity
-   var timer = setInterval(function () {
-       if (op <= 0.1){
-           clearInterval(timer);
-       }
-       element.style.opacity = op;
-       element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-       op -= op * 0.1;
+  gainPoints(){
+    this.scoreChange.innerText = '+20';
+    this.scoreChange.className = 'gain';
+    this.fade(this.scoreChange);
+    this.score += 20;
+    this.scoreElem.innerText = this.score;
+    this.scoreElem.className = 'gain';
+  }
+
+  losePoint() {
+    this.scoreChange.innerText = "-1";
+    this.scoreChange.className = 'loss';
+    this.fade();
+    this.score -= 1;
+    this.scoreElem.innerText = this.score;
+    this.scoreElem.className = 'loss';
+  }
+
+  fade() {
+   let op = 1;  // initial opacity
+   let timer = setInterval(()=> {
+     if (op <= 0.1) {
+        clearInterval(timer);
+     }
+     this.scoreChange.style.opacity = op;
+     this.scoreChange.style.filter = `alpha(opacity=${op*100})`;
+     op -= op * 0.1;
    }, 50);
   }
 

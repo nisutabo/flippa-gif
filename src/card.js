@@ -25,7 +25,7 @@ const Card= (() => {
     cardFront() {
       let frontImg = document.createElement('img');
       frontImg.setAttribute('class', 'front');
-      frontImg.setAttribute('src', 'https://pbs.twimg.com/profile_images/544985527997304833/0DNfZq49_400x400.png');
+      frontImg.setAttribute('src', 'https://i.imgur.com/TBSqsN7.png');
       return frontImg;
     }
 

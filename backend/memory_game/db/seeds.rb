@@ -25,7 +25,17 @@ csv.each do |row|
 end
 puts "saved #{csv.length} celebrities"
 
-# seed TV shows (category 3)
+# seed Nicolas Cage (category 3)
+Category.create(name: 'nicolascage')
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'nickcage.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  c = Card.new
+  c.name = row['name']
+  c.img_url = row['img_url']
+  c.category_id = row['category_id']
+  c.save
+end
+puts "saved #{csv.length} nicolas cage gifs"
 
-
-# seed Nicolas Cage (category 4)
+# seed TV shows (category 4)

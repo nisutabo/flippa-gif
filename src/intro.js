@@ -11,13 +11,10 @@ class Intro {
       <div class="intro-inner">
         <div class="intro-content">
           <h1>FLIPPA GIF</h1>
-
           <img src="https://i.imgur.com/nX3EwgJ.gif" alt="nyan cat"/>
-          
         </div>
       </div>
     </div>`;
-
   }
 
   addForm() {
@@ -28,8 +25,8 @@ class Intro {
         <option selected disabled> Select Category </option>
         <option value="1">Animals</option>
         <option value="2">Celebrities</option>
-        <option value="3">TV Shows</option>
-        <option value="4">Nicolas Cage</option>
+        <option value="3">Nicolas Cage</option>
+        <option value="4">TV Shows</option>
       </select>
       <select id="difficulty" class="ui selection dropdown">
         <option selected disabled> Select Difficulty </option>
@@ -38,7 +35,7 @@ class Intro {
         <option value="hard">Veteran</option>
         <option value="superhard">Master</option>
       </select>
-      <input type="submit" value="Start" class="ui primary button">
+      <input type="submit" value="Start" class="ui button">
     </form>`;
     introContent.innerHTML += formHTML;
   }

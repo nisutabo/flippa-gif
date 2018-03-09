@@ -28,9 +28,9 @@ class App {
     case 2:
       return 'Celebrities';
     case 3:
-      return 'TV Shows';
-    case 4:
       return 'Nicolas Cage';
+    case 4:
+      return 'TV Shows';
     }
   }
 
@@ -44,19 +44,29 @@ class App {
   setGameLayout() {
     this.body.innerHTML = `
     <div class="menu-container">
-      <div class="item">FLIPPA GIF</div>
-      <div id="timer" class="item">0 hr, 0 min, 0 sec</div>
-      <div class="item">Score: </div>
-      <div id="show" class="w3-container w3-center w3-animate-top"></div>
-      <div id="score-value" class="points">0</div>
-
-      <div class="item">Category: ${this.setCategory()}</div>
-      <div class="item"><i class="big repeat link icon restart"></i></div>
-      <div class="item"><i class="big arrow left link icon back"></i></div>
+      <div class="item logo"><h1>FLIPPA GIF</h1></div>
+      <div class="item">
+        <p class="label">Timer:</p>
+        <p id="timer" class="item value">00:00</p>
+      </div>
+      <div class="item">
+        <p class="label">Score:</p>
+        <div class="item value">
+          <p id="score-change"></p>
+          <p id="score-value">0</p>
+        </div>
+      </div>
+      <div class="item">
+        <p class="label">Category:</p>
+        <p class="item category">${this.setCategory()}</p>
+      </div>
+      <div class="item">
+        <div><i class="repeat link icon restart"></i></div>
+        <div><i class="arrow left link icon back"></i></div>
+      </div>
     </div>
     <div class="game-container-outer">
-      <div class="game-container-inner">
-      </div>
+      <div class="game-container-inner"></div>
     </div>`;
   }
 
@@ -81,22 +91,22 @@ class App {
 
   runTimer() {
     let timer = document.getElementById('timer');
-    let arr = timer.innerHTML.split(', ');
-    let hour = parseInt(arr[0].split(' ')[0]);
-    let min = parseInt(arr[1].split(' ')[0]);
-    let sec = parseInt(arr[2].split(' ')[0]);
+    let arr = timer.innerHTML.split(':');
+    let min = parseInt(arr[0]);
+    let sec = parseInt(arr[1]);
     if (sec === 59) {
-      if (min === 59) {
-        hour++;
-        min = 0;
-      } else {
-        min++;
-      }
+      min++;
       sec = 0;
     } else {
       sec++;
     }
-    timer.innerHTML = `${hour} hr, ${min} min, ${sec} sec`;
+    if (sec < 10) {
+      sec = '0' + sec;
+    }
+    if (min < 10) {
+      min = '0' + min;
+    }
+    timer.innerHTML = `${min}:${sec}`;
   }
 
   addGameListeners() {
