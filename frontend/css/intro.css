@@ -1,0 +1,93 @@
+.intro-outer {
+  background-color: #4c4c4c;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: table;
+  top: 0
+}
+
+.intro-inner {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  max-width: auto;
+}
+
+.intro-content {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-content h1 {
+  font-size: 5rem;
+  color: #eceeef;
+  text-shadow: 0px 0px 300px #000
+  opacity: 0;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.intro-content img {
+  border: 2px solid #eceeef;
+  border-radius: 2rem;
+  margin: 5% 10% 10%;
+  opacity: 0;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+img {animation-delay: 0.5s;}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translate3d(0,0,0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0,0,0);
+  }
+}
+
+/* dropdown menu override */
+button, input, optgroup, select, textarea {
+  font-family: 'Chelsea Market', cursive;
+}
+
+.ui.button {
+  font-family: 'Chelsea Market', cursive;
+  background-color: #00B3E6;
+  color: #eceeef;
+
+  opacity: 0;  /* make things invisible upon start */
+  animation: fadeIn ease-in 1; /* call fadeIn keyframe, use animattion ease-in and repeat it only 1 time */
+  animation-fill-mode: forwards; /* after animation, remain at the last keyframe value (opacity: 1)*/
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+}
+
+.ui.selection.dropdown {
+  background: #eceeef;
+
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
