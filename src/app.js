@@ -16,6 +16,7 @@ class App {
       this.categoryId = parseInt(e.target[0].value);
       this.difficulty = e.target[1].value;
       if (this.categoryId && this.difficulty!== "-- Select Difficulty --") {
+        new Howl({src: ['./sounds/start.mp3']}).play();
         this.launchGame();
       }
     });

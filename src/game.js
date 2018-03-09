@@ -47,6 +47,7 @@ class Game {
   addCardsListeners() {
     this.gameContainer.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG') {
+        new Howl({src: ['./sounds/flip.mp3']}).play();
         e.target.parentNode.classList.add("flipped");
         if (this.cardsInPlay.length) {
           this.cardsInPlay.push(e.target.nextElementSibling);
@@ -84,6 +85,7 @@ class Game {
     this.score += 20;
     this.scoreElem.innerText = this.score;
     this.scoreElem.className = 'gain';
+    new Howl({src: ['./sounds/gain.mp3']}).play();
   }
 
   losePoint() {
