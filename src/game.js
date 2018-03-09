@@ -14,7 +14,7 @@ class Game {
   }
 
   fetchCards() {
-    fetch(`http://localhost:3000/api/categories/${this.categoryId}`)
+    fetch(`https://flippa-gif-backend.herokuapp.com/api/categories/${this.categoryId}`)
     .then(res => res.json())
     .then(json => this.selectCards(json.cards));
   }
