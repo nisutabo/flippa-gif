@@ -1,6 +1,6 @@
 # Flippa Gif
 
-Flippa Gif is a digital interpretation of the age-old card game known as Concentration. (Other names include Match Match, Match Up, Memory, Pelmanism, Shinkei-suijaku, Pexeso, and Pairs.) At the start, all the cards are place face down. For each turn, the player turns over any two cards. If the two cards match, the player gains 20 points, and if they do not match, the player loses 1 point. The game ends when all the cards have been matched.
+Flippa Gif is a digital rendition of the age-old card game known as Concentration. (Other names include Match Match, Match Up, Memory, Pelmanism, Shinkei-suijaku, Pexeso, and Pairs.) At the start, all the cards are place face down. For each turn, the player turns over any two cards. If the two cards match, the player gains 20 points, and if they do not match, the player loses 1 point. The game ends when all the cards have been matched.
 
 ## Installing
 1. Clone repository from GitHub
