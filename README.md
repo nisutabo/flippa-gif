@@ -16,6 +16,7 @@ open index.html
 ## Built With
 * [Semantic UI](https://semantic-ui.com/) - a a CSS and Javascript framework for styling
 * [Howler.js](https://howlerjs.com/) - a Javascript audio library
+* [Ruby on Rails](http://rubyonrails.org/) - a server-side web application framework (for internal API)
 
 ## Contributing
 1. Fork repository
