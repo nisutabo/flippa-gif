@@ -14,8 +14,8 @@ cd flippa-gif
 open index.html
 ```
 ## Built With
-* [Semantic UI](https://semantic-ui.com/) - CSS styling framework
-* [Howler.js](https://howlerjs.com/) - Javascript audio library
+* [Semantic UI](https://semantic-ui.com/) - a a CSS and Javascript framework for styling
+* [Howler.js](https://howlerjs.com/) - a Javascript audio library
 
 ## Contributing
 1. Fork repository
